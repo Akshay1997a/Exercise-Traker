@@ -1,0 +1,80 @@
+body{
+  font-size: 16px;
+  margin: 0px;
+  padding: 0px;
+}
+
+.head{
+  text-align: center;
+  height: 1px;
+}
+
+.sec-box{
+  position: absolute;
+  width: 500px;
+  height: 525px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  padding: 10px 50px;
+}
+
+.sec-box input[type=text],
+.sec-box input[type=password],
+.sec-box input[type=date]{
+  width: 100%;
+  padding: 10px;
+}
+
+.sec-box button{
+  padding: 15px;
+  float: right;
+  border: 0px;
+  border-radius: 10px;
+  background-color: dodgerblue;
+  width: 30%;
+  color: white;
+  font-size: 20px;
+}
+
+.footer{
+  text-align: center;
+}
+
+.error{
+  color: red;
+  margin-top: 0px;
+}
+
+.sec-box-exercise{
+  position: absolute;
+  width: 500px;
+  height: 650px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  padding: 10px 50px;
+}
+
+.scroll{
+  width: 100%;
+}
+
+.exerciseContainer{
+  width: 100%;
+  margin-bottom: 10px;
+  box-shadow: 0 0 10px;
+}
+
+.scroll{
+  padding: 10px 20px 10px 20px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: transparent;
+  height: 80%;
+  scrollbar-track-color: transparent;
+}

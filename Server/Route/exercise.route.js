@@ -1,15 +1,15 @@
 const route = require('express').Router()
-const Expences = require('../Model/expence.model')
+const Exercise = require('../Model/exercise.model')
 
 route.get('/', (req, res) => {
-    Expences.find({}, (err, data) => {
+    Exercise.find({}, (err, data) => {
         if (err) return res.status(400).send({ err: err })
         res.status(200).send(data)
     })
 })
 
 route.get('/:user', (req, res) => {
-    Expences.find({ username: req.params.user }, (err, data) => {
+    Exercise.find({ username: req.params.user }, (err, data) => {
         if (err) return res.status(400).send({ err: err })
         res.status(200).send(data)
     })
@@ -17,21 +17,21 @@ route.get('/:user', (req, res) => {
 
 
 route.post('/add/:user', (req, res) => {
-    var expence = new Expences({
-        username: req.params.username,
+    var exercise = new Exercise({
+        username: req.params.user,
         description: req.body.description,
         duration: Number(req.body.duration),
         date: Date.parse(req.body.date)
     })
 
-    expence.save((err, data) => {
+    exercise.save((err, data) => {
         if (err) return res.status(400).send({ err: err })
-        res.status(200).send({ result: 'ok', data: data })
+        res.status(200).send({result: 'ok',data: data })
     })
 })
 
 route.post('/update/:user', (req, res) => {
-    Expences.findOneAndUpdate(
+    Exercise.findOneAndUpdate(
         { username: req.params.user },
         {
             description: req.body.description,

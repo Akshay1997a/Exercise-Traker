@@ -1,6 +1,6 @@
-# Expence-Traker
+# Exercise-Traker
 
-Expence-raker allow users to track there dally expence
+Exercise-Traker allow users to track there dally exercise
 
 ### Dependencies used
 * Express
@@ -8,6 +8,8 @@ Expence-raker allow users to track there dally expence
 * cors
 * mongoose
 * nodemon
+* body-parser
+
 
 ### Install Dependencies
     npm install
