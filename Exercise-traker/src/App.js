@@ -14,7 +14,7 @@ function App() {
     <Router>
       <Route path="/" exact component={Signup} />
       <Route path="/login" exact component={Login}/>
-      <Route path="/dashboard/:user" component={Dashboard}/>
+      <Route path="/dashboard/:user" exact component={Dashboard}/>
       <Route path="/dashboard/:user/add" component={AddExercise}/>
       <Route path="/dashboard/:user/delete" component={DeleteExercise}/>
       <Route path="/dashboard/:user/edit" component={EditExercise}/>

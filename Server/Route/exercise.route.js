@@ -1,12 +1,14 @@
 const route = require('express').Router()
 const Exercise = require('../Model/exercise.model')
 
+
 route.get('/', (req, res) => {
     Exercise.find({}, (err, data) => {
         if (err) return res.status(400).send({ err: err })
         res.status(200).send(data)
-    })
+    }) 
 })
+
 
 route.get('/:user', (req, res) => {
     Exercise.find({ username: req.params.user }, (err, data) => {
@@ -19,8 +21,8 @@ route.get('/:user', (req, res) => {
 route.post('/add/:user', (req, res) => {
     var exercise = new Exercise({
         username: req.params.user,
+        title: req.body.title,
         description: req.body.description,
-        duration: Number(req.body.duration),
         date: Date.parse(req.body.date)
     })
 
@@ -30,12 +32,13 @@ route.post('/add/:user', (req, res) => {
     })
 })
 
+
 route.post('/update/:user', (req, res) => {
     Exercise.findOneAndUpdate(
         { username: req.params.user },
         {
+            title: req.body.title,
             description: req.body.description,
-            duration: Number(req.body.duration),
             date: Date.parse(req.body.date)
         },
         (err, data) => {

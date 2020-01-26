@@ -5,8 +5,8 @@ export default class AddExercise extends React.Component{
         super(props)
         this.state={
             username: "",
+            title: "",
             description: "",
-            duration: "",
             date: ""
         }
 
@@ -46,11 +46,11 @@ export default class AddExercise extends React.Component{
                     </div>
                     <div className="col-lg-12 section">
                         <form onSubmit={this.handleSubmit}>
+                            Title: <br/>
+                            <input type="text" name="title" onChange={this.handleChange} />
+                            <p className="error"></p>
                             Description: <br/>
                             <input type="text" name="description" onChange={this.handleChange} />
-                            <p className="error"></p>
-                            Duration:
-                            <input type="text" name="duration" onChange={this.handleChange} />
                             <p className="error"></p>
                             Date:
                             <input type="date" name="date" onChange={this.handleChange} />

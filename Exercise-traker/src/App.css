@@ -10,14 +10,10 @@ body{
 }
 
 .sec-box{
-  position: absolute;
   width: 500px;
   height: 525px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 10px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
   padding: 10px 50px;
 }
 
@@ -48,16 +44,29 @@ body{
   margin-top: 0px;
 }
 
+.container-fluid{
+  text-align: center;
+}
+
 .sec-box-exercise{
-  position: absolute;
-  width: 500px;
-  height: 650px;
+  margin-top: 100px;
+  width: 1300px;
+  padding: 0px;
+  height: 750px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 10px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%,-50%);
-  padding: 10px 50px;
+  overflow: hidden;
+}
+
+.bg-dark{
+  background-color: #343A40;
+  border-radius: 0px;
+  padding: 10px 20px;
+}
+
+.navbar-brand{
+  font-size: 40px;
+  color: white;
 }
 
 .scroll{
@@ -66,8 +75,19 @@ body{
 
 .exerciseContainer{
   width: 100%;
-  margin-bottom: 10px;
-  box-shadow: 0 0 10px;
+  margin-bottom: 2px;
+  border-right: 0px;
+  border-left: 0px;
+  border-bottom: 1px solid gray;
+  background-color: white;
+  text-align: left;
+}
+.exerciseContainer::selection{
+  outline: none;
+}
+
+.list{
+  height: 650px;
 }
 
 .scroll{
@@ -75,6 +95,102 @@ body{
   overflow-y: scroll;
   scrollbar-width: thin;
   scrollbar-color: transparent;
-  height: 80%;
+  height: inherit;
   scrollbar-track-color: transparent;
+}
+
+.head-exercise{
+  background-color: #343A40;
+  text-align: center;
+  height: fit-content;
+  padding: 25px;
+}
+
+.head-exercise h4{
+  color: white;
+}
+
+.btn-add{
+  z-index: 1;
+  position: absolute;
+  bottom: 5%;
+  left: 75%;
+  width: 70px;
+  height: 70px;
+  border: 0px;
+  background-color: #06D755;
+  border-radius: 100%;
+  font-size: 30px;
+}
+
+.btn-edit{
+  z-index: 1;
+  float: right;
+  width: 70px;
+  height: 70px;
+  border: 0px;
+  background-color: #06D755;
+  border-radius: 100%;
+  font-size: 30px;
+}
+
+.desc{
+  height: 450px;
+}
+
+.fa-plus,
+.fa-edit{
+  color: white;
+}
+
+.input{
+  margin-bottom: 0px;
+  width: 100%;
+  padding: 20px 20px;
+  font-size: 20px;
+  border: 0px;
+}
+
+
+textarea{
+  overflow: auto;
+  resize: none;
+  vertical-align: top;
+}
+
+.input-but{
+  background-color: #06D755;
+  color: white;
+  font-size: 30px;
+  float: right;
+  padding: 10px 120px 10px 120px;
+}
+
+.date{
+  width: 50%;
+  display: inline;
+}
+
+.right-container{
+    height: 650px;
+    padding-right: 10px;
+    text-align: left;
+}
+
+.title{
+  font-size:35px;
+  font-weight: bold;
+}
+
+.brand-screen{
+  text-align: center;
+  padding: 100px 0px;
+}
+
+.welcome-heading{
+  font-size: 50px;
+}
+
+.name-brand{
+  font-size: 150px;
 }

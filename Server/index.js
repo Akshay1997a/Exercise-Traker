@@ -25,12 +25,13 @@ mongoose.connect(url, {
     console.log('Database connected')
 })
 
-app.listen(PORT,()=>{
+var server = app.listen(PORT,()=>{
     console.log('Listning on port '+PORT)
 })
 
 app.on('exit',()=>{
-
+    server.close()
+    console.log('Server closed')
 })
 
 
