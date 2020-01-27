@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom'
+import { userSignupUrl } from '../config/urls'
+import { fetchData } from '../Network/fetch'
 
 export default class Signin extends Component {
     constructor(props) {
@@ -17,43 +18,40 @@ export default class Signin extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    validate(){
-        if(this.state.password.length < 8){
-            this.setState({pass_err_msg: "minimum length mush be 8"})
+    validate() {
+        if (this.state.password.length < 8) {
+            this.setState({ user_err_msg: "", pass_err_msg: "minimum length mush be 8 or more", cnf_pass_err_msg: "" })
             return false
         }
-        else if(this.state.password != this.state.cnfPassword){
-            this.setState({cnf_pass_err_msg: "password not matched!"})
+        else if (this.state.password !== this.state.cnfPassword) {
+            this.setState({ user_err_msg: "", pass_err_msg: "", cnf_pass_err_msg: "password not matched!" })
             return false
         }
-        else{
+        else {
             return true
         }
     }
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault()
+
+        var userData = {
+            username: this.state.username,
+            password: this.state.password
+        }
+
         if (this.validate()) {
-            fetch("http://localhost:5000/user/signup", {
-                method: "POST",
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({username: this.state.username, password: this.state.password})
-            })
-                .then((res) => { return res.json() })
-                .then((resJson) => {
-                    if (resJson.result == 'ok') {
-                        alert('ok')
-                    }
-                    else {
-                        this.setState({
-                            user_err_msg: resJson.user_err_msg,
-                            pass_err_msg: resJson.pass_err_msg
-                        })
-                    }
+            var responce = await fetchData(userSignupUrl, "POST", userData)
+            if (responce.result === 'ok') {
+                localStorage.setItem('userAuth', this.state.username)
+                window.open("/dashboard/", '_top')
+            }
+            else {
+                this.setState({
+                    user_err_msg: responce.user_err_msg,
+                    pass_err_msg: responce.pass_err_msg
                 })
+            }
         }
     }
 
@@ -70,7 +68,7 @@ export default class Signin extends Component {
                         <h1>Welcome</h1>
                     </div>
                     <div className="col-lg-12 section">
-                        <form  onSubmit={this.handleSubmit}>
+                        <form onSubmit={this.handleSubmit}>
                             User Name:<br />
                             <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
                             <p className="error">{this.state.user_err_msg}</p>
@@ -80,9 +78,7 @@ export default class Signin extends Component {
                             Confirm Password:<br />
                             <input type="password" name="cnfPassword" value={this.state.cnfPassword} onChange={this.handleChange} />
                             <p className="error">{this.state.cnf_pass_err_msg}</p>
-                            <Link to="/dashboard">
-                                <button>Sing up</button>
-                            </Link>
+                            <button>Sing up</button>
                         </form>
                     </div>
                     <div className="col-lg-12 footer">

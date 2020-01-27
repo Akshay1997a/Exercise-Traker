@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { fetchData } from '../Network/fetch'
+import { userLoginUrl } from '../config/urls'
 
 export default class Signin extends Component {
     constructor(props) {
@@ -14,27 +15,21 @@ export default class Signin extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit = (event) => {
+    handleSubmit = async (event) => {
         event.preventDefault()
-        fetch("http://localhost:5000/user/login", {
-            method: "POST",
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ username: this.state.username, password: this.state.password })
-        })
-            .then((res) => { return res.json() })
-            .then((resJson) => {
-                if (resJson.result == 'ok') {
 
-                }
-                else {
-                    this.setState({
-                        user_err_msg: resJson.user_err_msg,
-                    })
-                }
+        var userData = { username: this.state.username, password: this.state.password }
+        const responce = await fetchData(userLoginUrl, "POST", userData)
+
+        if (responce.result === 'ok') {
+            localStorage.setItem('userAuth', this.state.username)
+            window.open("/dashboard", "_top")
+        }
+        else {
+            this.setState({
+                user_err_msg: responce.user_err_msg,
             })
+        }
     }
 
     handleChange = (event) => {
@@ -57,9 +52,7 @@ export default class Signin extends Component {
                             Password: <br />
                             <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                             <p className="error">{this.state.pass_err_msg}</p>
-                            <Link to={"/dashboard/"+this.state.username}>
-                                <button>Log in</button>
-                            </Link>
+                            <button>Log in</button>
                         </form>
                     </div>
                     <div className="col-lg-12 footer">

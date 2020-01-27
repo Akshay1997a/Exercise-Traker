@@ -4,17 +4,24 @@ body{
   padding: 0px;
 }
 
+header{
+  align-items: center;
+}
+
 .head{
   text-align: center;
-  height: 1px;
 }
 
 .sec-box{
+  margin-top: 200px;
   width: 500px;
-  height: 525px;
+  height: max-content;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 10px;
   padding: 10px 50px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .sec-box input[type=text],
@@ -22,6 +29,7 @@ body{
 .sec-box input[type=date]{
   width: 100%;
   padding: 10px;
+  margin-bottom: 20px;
 }
 
 .sec-box button{
@@ -33,6 +41,10 @@ body{
   width: 30%;
   color: white;
   font-size: 20px;
+}
+
+.section{
+  margin-bottom: 50px;
 }
 
 .footer{
@@ -56,6 +68,9 @@ body{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 10px;
   overflow: hidden;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .bg-dark{
@@ -193,4 +208,12 @@ textarea{
 
 .name-brand{
   font-size: 150px;
+}
+
+.logout-btn{
+  float: right;
+  background-color: transparent;
+  border: 0px;
+  font-size: 30px;
+  color: white;
 }
