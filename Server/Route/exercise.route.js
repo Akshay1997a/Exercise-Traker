@@ -3,17 +3,14 @@ const Exercise = require('../Model/exercise.model')
 
 
 route.get('/', (req, res) => {
-    Exercise.find({}, (err, data) => {
-        if (err) return res.status(400).send({ err: err })
-        res.status(200).send({result: 'ok', data: data})
-    }) 
+    
 })
 
 
 route.get('/:user', (req, res) => {
     Exercise.find({ username: req.params.user }, (err, data) => {
         if (err) return res.status(400).send({ err: err })
-        res.status(200).send({result: 'ok', data: data})
+        res.send({result: 'ok', data: data})
     })
 })
 

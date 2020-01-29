@@ -1,13 +1,13 @@
 import React from 'react'
 import 'font-awesome/css/font-awesome.min.css'
 import { fetchData } from '../Network/fetch';
-import { addExercise, getExercise } from '../config/urls'
+import { addExercise, getExercise, dashboardUrl } from '../config/urls'
 
 export default class Exercises extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: this.props.username,
+            username: "",
             error: false,
             isLoading: true,
             title: "",
@@ -21,15 +21,27 @@ export default class Exercises extends React.Component {
         this.handleChange = this.handleChange.bind(this)
     }
 
-    async componentDidMount() {
-        var responce = await fetchData(getExercise + this.state.username, "GET")
-
+    getUser = async () => {
+        var responce = await fetchData(dashboardUrl, "POST")
         if (responce.result === 'ok') {
-            this.setState({
-                isLoading: false,
-                tasks: responce.data
-            })
+            this.setState({ username: responce.username })
+            var responce = await fetchData(getExercise + this.state.username, "GET")
+
+            if (responce.result === 'ok') {
+                this.setState({
+                    isLoading: false,
+                    tasks: responce.data
+                })
+            }
         }
+        else {
+            alert(responce.err)
+            window.location.href = '/login'
+        }
+    }
+
+    async componentDidMount() {
+        this.getUser()
     }
 
     handleChange = (event) => {

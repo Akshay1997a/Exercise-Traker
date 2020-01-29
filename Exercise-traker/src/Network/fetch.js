@@ -1,16 +1,18 @@
-export const fetchData = async (url, method, body) => {
-    try {
-        var res = await fetch(url, {
-            method: method,
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(body)
-        })
-        var resJson = await res.json()
-    } catch (error) {
-        console.log(error)
+const axios = require('axios').default
+axios.defaults.withCredentials = true
+
+export const fetchData = async (url, method, body)=>{
+    try{
+        if(method === "POST"){
+            var resPost = await axios.post(url,body)
+            console.log(resPost)
+            return resPost.data
+        }else{
+            var resGet = await axios.get(url, body)
+            console.log(resGet)
+            return resGet.data
+        }
+    } catch (err){
+        console.log(err)
     }
-    return resJson
 }

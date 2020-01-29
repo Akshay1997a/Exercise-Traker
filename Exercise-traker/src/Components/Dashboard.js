@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
 import Exercises from './Exercises'
+import { fetchData } from '../Network/fetch'
+import { logoutUrl } from '../config/urls'
 
 export default class Dashboard extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            username: localStorage.getItem('userAuth')
+            username: this.props.username
         }
 
         this.logout = this.logout.bind(this)
     }
 
-    logout = () => {
+    logout = async () => {
         const { history } = this.props
 
-        localStorage.removeItem('userAuth')
-        history.push('/')
+        var resposce = await fetchData(logoutUrl, "GET")
+        if (resposce.result === 'ok') {
+            history.push('/')
+        } else {
+            alert('err')
+        }
     }
 
     render() {

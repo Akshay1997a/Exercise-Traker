@@ -20,10 +20,8 @@ export default class Signin extends Component {
 
         var userData = { username: this.state.username, password: this.state.password }
         const responce = await fetchData(userLoginUrl, "POST", userData)
-
         if (responce.result === 'ok') {
-            localStorage.setItem('userAuth', this.state.username)
-            window.open("/dashboard", "_top")
+            window.location.href = "/dashboard"
         }
         else {
             this.setState({

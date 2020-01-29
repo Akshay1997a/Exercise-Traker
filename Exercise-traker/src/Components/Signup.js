@@ -39,11 +39,9 @@ export default class Signin extends Component {
             username: this.state.username,
             password: this.state.password
         }
-
         if (this.validate()) {
             var responce = await fetchData(userSignupUrl, "POST", userData)
             if (responce.result === 'ok') {
-                localStorage.setItem('userAuth', this.state.username)
                 window.open("/dashboard/", '_top')
             }
             else {
