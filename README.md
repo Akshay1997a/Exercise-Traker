@@ -1,9 +1,15 @@
 # Exercise-Traker
 
-Exercise-Traker allow users to track there dally exercise
+This is Exercise-Traker project in MERN stack using the following technologies:
+* [React](https://reactjs.org/) and [React Router](https://www.npmjs.com/package/react-router) from frontend
+* [Express](https://expressjs.com/) and [Mongoose](https://mongoosejs.com/) for backend
+* [SASS](https://sass-lang.com/) for styling
+* [Webpack](https://webpack.js.org/) for compilation
 
 ### Dependencies used
 * Express
+* Express-Session
+* uuid
 * bcrypt
 * cors
 * mongoose
@@ -12,7 +18,10 @@ Exercise-Traker allow users to track there dally exercise
 
 
 ### Install Dependencies
-    npm install
+Inside server folder type following code
+
+    cd server
+    npm install --save
 
 ### Run Server
     cd Server
@@ -20,7 +29,7 @@ Exercise-Traker allow users to track there dally exercise
 
 ### Run React Application
     cd Exercise-traker
-    npm start
+    npm start --save
 
 ### Images
 
