@@ -96,6 +96,7 @@ header{
   border-bottom: 1px solid gray;
   background-color: white;
   text-align: left;
+  display: flex;
 }
 .exerciseContainer::selection{
   outline: none;
@@ -216,4 +217,26 @@ textarea{
   border: 0px;
   font-size: 30px;
   color: white;
+}
+.left-tasklist-but{
+  flex: 5;
+  cursor: pointer;
+}
+
+.right-tasklist-but{
+  flex: 1;
+}
+
+.fa.fa-trash-o{
+  color: #343A40;
+  font-size: 30px;
+  padding: 20px;
+}
+
+.fa.fa-trash-o:hover{
+  color: red;
+}
+
+.delBut{
+  cursor: pointer;
 }

@@ -1,5 +1,5 @@
 const express = require('express')
-const mongoose = require('mongoose')
+const DB = require('./config/DB')
 const cors = require('cors')
 const userRoute = require('./Route/user.route')
 const exerciseRoute = require('./Route/exercise.route')
@@ -30,19 +30,11 @@ app.use(session({
 app.use('/user', userRoute)
 app.use('/exercise', exerciseRoute)
 
-mongoose.connect(url, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true, 
-    useCreateIndex: true,
-    useFindAndModify: true
-    }, (err)=>{
-    if (err) throw err
-    console.log('Database connected')
-})
-
 var server = app.listen(PORT,()=>{
     console.log('Listning on port '+PORT)
 })
+
+DB.connectToDB()
 
 app.on('exit',()=>{
     server.close()

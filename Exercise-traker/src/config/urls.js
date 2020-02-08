@@ -4,5 +4,6 @@ module.exports = {
     getExercise: "http://localhost:5000/exercise/",
     addExercise: "http://localhost:5000/exercise/add/",
     logoutUrl: "http://localhost:5000/user/logout",
-    dashboardUrl : "http://localhost:5000/user/dashboard"
+    dashboardUrl : "http://localhost:5000/user/dashboard",
+    deleteExerciseUrl: "http://localhost:5000/exercise/delete/"
 }

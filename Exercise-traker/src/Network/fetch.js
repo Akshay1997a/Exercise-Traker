@@ -3,13 +3,11 @@ axios.defaults.withCredentials = true
 
 export const fetchData = async (url, method, body)=>{
     try{
-        if(method === "POST"){
+        if(method.toUpperCase() === "POST"){
             var resPost = await axios.post(url,body)
-            console.log(resPost)
             return resPost.data
-        }else{
+        }else if(method.toUpperCase() === "GET"){
             var resGet = await axios.get(url, body)
-            console.log(resGet)
             return resGet.data
         }
     } catch (err){

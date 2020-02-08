@@ -1,7 +1,7 @@
 import React from 'react'
 import 'font-awesome/css/font-awesome.min.css'
 import { fetchData } from '../Network/fetch';
-import { addExercise, getExercise, dashboardUrl } from '../config/urls'
+import { addExercise, getExercise, dashboardUrl, deleteExerciseUrl } from '../config/urls'
 
 export default class Exercises extends React.Component {
     constructor(props) {
@@ -19,6 +19,7 @@ export default class Exercises extends React.Component {
 
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChange = this.handleChange.bind(this)
+        this.deleteTask = this.deleteTask.bind(this)
     }
 
     getUser = async () => {
@@ -37,6 +38,21 @@ export default class Exercises extends React.Component {
         else {
             alert(responce.err)
             window.location.href = '/login'
+        }
+    }
+
+    deleteTask = async (index) => {
+        var deleteData = {
+            title: this.state.tasks[index].title,
+            date: this.state.tasks[index].date
+        }
+        var responce = await fetchData(deleteExerciseUrl, "POST", deleteData)
+        if (responce.result === 'ok') {
+            this.getUser()
+            alert('item deleted')
+        }
+        else {
+            alert('oops')
         }
     }
 
@@ -70,14 +86,19 @@ export default class Exercises extends React.Component {
 
     Tasks(item, index) {
         return (
-            <button key={index} className="exerciseContainer" onClick={() => { this.setState({ title: item.title, desc: item.description, date: item.date, addExer: false }) }}>
-                <div className="">
-                    <h3>{item.title}</h3>
+            <div key={index} className="exerciseContainer">
+                <div className="col-lg-10 left-tasklist-but" onClick={() => { this.setState({ title: item.title, desc: item.description, date: item.date, addExer: false }) }}>
+                    <div className="">
+                        <h3>{item.title}</h3>
+                    </div>
+                    <div className="">
+                        <h6>{item.description.slice(0,40)}</h6>
+                    </div>
                 </div>
-                <div className="">
-                    <h6>{item.description}</h6>
+                <div className="col-lg-2 right-tasklist-but" title="delete task" onClick={() => { this.deleteTask(index)}}>
+                    <div className="delBut"><i className="fa fa-trash-o"></i></div>
                 </div>
-            </button>
+            </div>
         )
     }
 
@@ -88,7 +109,7 @@ export default class Exercises extends React.Component {
                     <div className="col-lg-8 right-container">
                         <p placeholder="Title" className="input title">{this.state.title}</p>
                         <p className="input desc">{this.state.desc}</p>
-                        <p className="input date">{this.state.date}</p>
+                        <p className="input date">{new Date(this.state.date).toDateString()}</p>
                         <button className="btn-edit" onClick={() => { this.setState({ addExer: !this.state.addExer }) }}>
                             <i className="fa fa-edit"></i>
                         </button>
