@@ -8,6 +8,7 @@ export default class Signin extends Component {
         this.state = {
             username: "",
             password: "",
+            isRememberMe: false,
             user_err_msg: "",
         }
 
@@ -18,7 +19,7 @@ export default class Signin extends Component {
     handleSubmit = async (event) => {
         event.preventDefault()
 
-        var userData = { username: this.state.username, password: this.state.password }
+        var userData = { username: this.state.username, password: this.state.password, isRememberMe: this.state.isRememberMe }
         const responce = await fetchData(userLoginUrl, "POST", userData)
         if (responce.result === 'ok') {
             window.location.href = "/dashboard"
@@ -31,7 +32,6 @@ export default class Signin extends Component {
     }
 
     handleChange = (event) => {
-        event.preventDefault()
         this.setState({ [event.target.name]: event.target.value })
     }
 
@@ -50,11 +50,26 @@ export default class Signin extends Component {
                             Password: <br />
                             <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
                             <p className="error">{this.state.pass_err_msg}</p>
-                            <button>Log in</button>
+                            <div className="row">
+                                <div className="col-lg-6 rememberMeBut">
+                                    <input type="checkbox" name="isRememberMe" checked={this.state.check}
+                                        onChange={(e) => {
+                                            this.handleChange({
+                                                target: {
+                                                    name: e.target.name,
+                                                    value: e.target.checked,
+                                                },
+                                            });
+                                        }} />
+                                    <label htmlFor="isRememberMe" >Remember me</label></div>
+                                <div className="col-lg-6">
+                                    <button>Log in</button>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div className="col-lg-12 footer">
-                        <a href="/login">Don't have an account?</a>
+                        <a href="/">Don't have an account?</a>
                     </div>
                 </div>
             </header>

@@ -1,7 +1,8 @@
 import React from 'react'
 import 'font-awesome/css/font-awesome.min.css'
-import { fetchData } from '../Network/fetch';
-import { addExercise, getExercise, dashboardUrl, deleteExerciseUrl } from '../config/urls'
+import {init, getUser} from '../Controller/Controller'
+import {Fab} from '@material-ui/core'
+import {TaskView, Headline, AddExercise, EditExercise, ExerciseLoading, TaskList, Error } from './TaskView'
 
 export default class Exercises extends React.Component {
     constructor(props) {
@@ -13,162 +14,41 @@ export default class Exercises extends React.Component {
             title: "",
             desc: "",
             date: "",
+            _id: "",
             tasks: [],
             addExer: false,
+            editExer: false
         }
-
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleChange = this.handleChange.bind(this)
-        this.deleteTask = this.deleteTask.bind(this)
-    }
-
-    getUser = async () => {
-        var responce = await fetchData(dashboardUrl, "POST")
-        if (responce.result === 'ok') {
-            this.setState({ username: responce.username })
-            var responce = await fetchData(getExercise + this.state.username, "GET")
-
-            if (responce.result === 'ok') {
-                this.setState({
-                    isLoading: false,
-                    tasks: responce.data
-                })
-            }
-        }
-        else {
-            alert(responce.err)
-            window.location.href = '/login'
-        }
-    }
-
-    deleteTask = async (index) => {
-        var deleteData = {
-            title: this.state.tasks[index].title,
-            date: this.state.tasks[index].date
-        }
-        var responce = await fetchData(deleteExerciseUrl, "POST", deleteData)
-        if (responce.result === 'ok') {
-            this.getUser()
-            alert('item deleted')
-        }
-        else {
-            alert('oops')
-        }
+        init(this)
     }
 
     async componentDidMount() {
-        this.getUser()
-    }
-
-    handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value })
-    }
-
-    handleSubmit = async (event) => {
-        event.preventDefault()
-        var exerciseData = {
-            username: this.state.username,
-            title: this.state.title,
-            description: this.state.desc,
-            date: this.state.date
-        }
-
-        var responce = await fetchData(addExercise + this.state.username, "POST", exerciseData)
-
-        if (responce.result === 'ok') {
-            alert('item added')
-            this.setState({ addExer: false, tass: this.state.tasks.push(exerciseData) })
-        }
-        else {
-            alert('err')
-        }
-    }
-
-    Tasks(item, index) {
-        return (
-            <div key={index} className="exerciseContainer">
-                <div className="col-lg-10 left-tasklist-but" onClick={() => { this.setState({ title: item.title, desc: item.description, date: item.date, addExer: false }) }}>
-                    <div className="">
-                        <h3>{item.title}</h3>
-                    </div>
-                    <div className="">
-                        <h6>{item.description.slice(0,40)}</h6>
-                    </div>
-                </div>
-                <div className="col-lg-2 right-tasklist-but" title="delete task" onClick={() => { this.deleteTask(index)}}>
-                    <div className="delBut"><i className="fa fa-trash-o"></i></div>
-                </div>
-            </div>
-        )
+        getUser()
     }
 
     AddItem = () => {
-        if (!this.state.addExer) {
-            if (!this.state.title == "") {
-                return (
-                    <div className="col-lg-8 right-container">
-                        <p placeholder="Title" className="input title">{this.state.title}</p>
-                        <p className="input desc">{this.state.desc}</p>
-                        <p className="input date">{new Date(this.state.date).toDateString()}</p>
-                        <button className="btn-edit" onClick={() => { this.setState({ addExer: !this.state.addExer }) }}>
-                            <i className="fa fa-edit"></i>
-                        </button>
-                    </div>
-                )
-            }
-            else {
-                return (
-                    <div className="col-lg-8 brand-screen">
-                        <h1 className="welcome-heading">Welcome</h1>
-                        <h1 className="name-brand">KeepIt</h1>
-                        <br />
-                        <p className="paragraph">Never miss your note anymore!</p>
-                    </div>
-                )
+        if (this.state.addExer || this.state.editExer) {
+            if(this.state.addExer){
+                return <AddExercise obj={this}/>
+            }else if (this.state.editExer){
+                return <EditExercise obj={this} title={this.state.title} desc={this.state.desc} date={this.state.date} />
             }
         }
         else {
-            return (
-                <div className="col-lg-8 right-container">
-                    <form onSubmit={this.handleSubmit}>
-                        <input type="text" placeholder="Title" className="input title" name="title" value={this.state.title} onChange={this.handleChange}></input>
-                        <textarea name="desc" placeholder="Descriiption" className="input desc" value={this.state.desc} onChange={this.handleChange}></textarea><br />
-                        <input type="date" className="input date" name="date" value={this.state.date} onChange={this.handleChange}></input>
-                        <button className="input-but">Add</button>
-                    </form>
-                </div>
-            )
+            if (this.state.title === "" && this.state.desc===""){
+                return <Headline/>
+            }else{
+                return <TaskView title={this.state.title} desc={this.state.desc} date={this.state.date} obj={this} />
+            }
         }
     }
 
     render() {
         const { error, isLoading } = this.state
         if (error) {
-            return (
-                <header className="container-fluid">
-                    <div className="row sec-box-exercise">
-                        <div className="col-lg-12 head">
-                            <h1>Exercises</h1>
-                        </div>
-                        <div className="scroll">
-                            <p>Something goes wrong!!</p>
-                        </div>
-                    </div>
-                </header>
-            )
+            return <Error/>
         } else if (isLoading) {
-            return (
-                <header className="container-fluid">
-                    <div className="row sec-box">
-                        <div className="col-lg-12 head">
-                            <h1>Exercises</h1>
-                        </div>
-                        <div className="scroll">
-                            <h4>Loading...</h4>
-                        </div>
-                    </div>
-                </header>
-            )
+            return <ExerciseLoading />
         }
         else {
             return (
@@ -180,9 +60,9 @@ export default class Exercises extends React.Component {
                         <div className="col-lg-4 list">
                             <div className="scroll">
                                 {this.state.tasks.map((item, index) => (
-                                    this.Tasks(item, index)
+                                    TaskList(item, index, this)
                                 ))}
-                                <button className="btn-add" onClick={() => { this.setState({ title: "", desc: "", date: "", addExer: !this.state.addExer }) }}>
+                                <button className="btn-add" onClick={() => { this.setState({ title: "", desc: "", date: "", addExer: !this.state.addExer, editExer: false }) }}>
                                     <i className="fa fa-plus"></i>
                                 </button>
                             </div>

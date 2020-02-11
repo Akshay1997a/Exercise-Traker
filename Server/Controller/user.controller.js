@@ -1,14 +1,18 @@
 const userModel = require('../Model/user.model')
 
 exports.userLogin = (req, res) => {
+    if(req.body.isRememberMe){
+        req.session.cookie.maxAge = 2628000000;
+    }
+    console.log(req.session.cookie.maxAge)
     userModel.findOne({ username: req.body.username, password: req.body.password }, (err, doc) => {
-        if (err) return res.status(404).send({ result: '!ok', user_err_msg: 'user not found' })
+        if (err) return res.send({ result: '!ok', user_err_msg: 'user not found' })
         else {
             if (doc != null) {
                 req.session.userId = doc._id
-                res.status(200).send({ result: 'ok', username: doc.username })
+                res.send({ result: 'ok', username: doc.username })
             } else {
-                res.status(404).send({ result: '!ok', user_err_msg: 'user not found' })
+                res.send({ result: '!ok', user_err_msg: 'user not found' })
             }
         }
     })
@@ -30,8 +34,8 @@ exports.userSignin = (req, res) => {
 exports.dashboard = (req, res) => {
     if (req.session.userId) {
         userModel.findById(req.session.userId, (err, doc) => {
-            if (err) return res.status(404).send({ result: '!ok', err: err })
-            res.status(200).send({
+            if (err) return res.send({ result: '!ok', err: err })
+            res.send({
                 result: 'ok',
                 username: doc.username,
             })

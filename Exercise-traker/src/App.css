@@ -32,13 +32,13 @@ header{
   margin-bottom: 20px;
 }
 
-.sec-box button{
+.sec-box Button{
   padding: 15px;
-  float: right;
   border: 0px;
   border-radius: 10px;
   background-color: dodgerblue;
-  width: 30%;
+  float: right;
+  width: 80%;
   color: white;
   font-size: 20px;
 }
@@ -130,7 +130,7 @@ header{
   z-index: 1;
   position: absolute;
   bottom: 5%;
-  left: 75%;
+  left: 72%;
   width: 70px;
   height: 70px;
   border: 0px;
@@ -227,6 +227,12 @@ textarea{
   flex: 1;
 }
 
+
+.rememberMeBut label{
+  font-weight: 400;
+  margin-left: 10px;
+}
+
 .fa.fa-trash-o{
   color: #343A40;
   font-size: 30px;
@@ -239,4 +245,9 @@ textarea{
 
 .delBut{
   cursor: pointer;
+}
+
+Checkbox{
+  width: 2px;
+  height: 2px;
 }

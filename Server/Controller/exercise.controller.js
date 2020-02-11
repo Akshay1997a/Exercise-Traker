@@ -1,8 +1,10 @@
+const mongoose = require('mongoose')
+const path = require('path')
 const exerciseModel = require('../Model/exercise.model')
 
 exports.getUserExercise = (req, res)=>{
     exerciseModel.find({ username: req.params.user }, (err, data) => {
-        if (err) return res.status(400).send({ err: err })
+        if (err) return res.send({result: '!ok', err: err })
         res.send({result: 'ok', data: data})
     })
 }
@@ -16,30 +18,33 @@ exports.addUserExercise = (req, res)=>{
     })
 
     exercise.save((err, data) => {
-        if (err) return res.status(400).send({ err: err })
-        res.status(200).send({result: 'ok',data: data })
+        if (err) return res.send({result:'!ok', err: err })
+        res.send({result: 'ok',data: data })
     })
 }
 
 exports.editUserExercise = (req, res)=>{
     exerciseModel.findOneAndUpdate(
-        { username: req.params.user },
+        { _id: req.body._id},
         {
             title: req.body.title,
             description: req.body.description,
             date: Date.parse(req.body.date)
         },
         (err, data) => {
-            if (err) return res.status(400).send({ err: err })
-            res.status(200).send(data)
+            if (err) return res.send({ result:'!ok', err: err })
+            res.send({result: 'ok'})
         })
 }
 
 exports.deleteUserExercise = (req, res)=>{
+    console.log(req.body._id)
     exerciseModel.findOneAndDelete({
-        title: req.body.title,
+        _id: req.body._id
     }, (err, doc)=>{
-        if (err) {return res.send({result: '!ok'})}
+        if (err) {
+            res.send({result: '!ok'})
+        }
         else if(doc == null){
             return res.send({result: '!ok'})
         }

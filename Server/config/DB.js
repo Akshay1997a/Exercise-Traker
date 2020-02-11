@@ -6,7 +6,7 @@ exports.connectToDB = ()=>{
         useUnifiedTopology: true,
         useNewUrlParser: true, 
         useCreateIndex: true,
-        useFindAndModify: true
+        useFindAndModify: false
         }, (err)=>{
         if (err) throw err
         console.log('Database connected')
