@@ -40,9 +40,9 @@ export default class Signin extends Component {
             password: this.state.password
         }
         if (this.validate()) {
-            var responce = await fetchData(userSignupUrl, "POST", userData)
+            const responce = await fetchData(userSignupUrl, "POST", userData)
             if (responce.result === 'ok') {
-                window.open("/dashboard/", '_top')
+                window.location.href = "/dashboard/"
             }
             else {
                 this.setState({

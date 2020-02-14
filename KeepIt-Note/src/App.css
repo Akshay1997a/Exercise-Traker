@@ -21,7 +21,8 @@ header{
   padding: 10px 50px;
   position: relative;
   left: 50%;
-  transform: translateX(-50%);
+  transform-origin: 0px 0px;
+  transform:translateX(-50%);
 }
 
 .sec-box input[type=text],
@@ -71,6 +72,7 @@ header{
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+  transform-origin: 0px 0px;
 }
 
 .bg-dark{
@@ -96,6 +98,7 @@ header{
   border-bottom: 1px solid gray;
   background-color: white;
   text-align: left;
+  cursor: pointer;
 }
 .exerciseContainer::selection{
   outline: none;
@@ -216,4 +219,16 @@ textarea{
   border: 0px;
   font-size: 30px;
   color: white;
+}
+
+.fa.fa-trash-o{
+  font-size: 30px;
+  color: red;
+  padding: 30%;
+}
+
+.delbtn{
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }

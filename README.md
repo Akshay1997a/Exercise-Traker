@@ -1,6 +1,6 @@
-# Exercise-Traker
+# KeepIt-Note
 
-Exercise-Traker allow users to track there dally exercise
+This is KeepIt Note project in MERN stack. This project helps you to remind your note at a time.
 
 ### Dependencies used
 * Express

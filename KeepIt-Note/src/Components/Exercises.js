@@ -1,6 +1,7 @@
 import React from 'react'
 import 'font-awesome/css/font-awesome.min.css'
 import { fetchData } from '../Network/fetch';
+import { WelcomeScreen } from './WelcomeScreen'
 import { addExercise, getExercise, dashboardUrl } from '../config/urls'
 
 export default class Exercises extends React.Component {
@@ -15,6 +16,8 @@ export default class Exercises extends React.Component {
             date: "",
             tasks: [],
             addExer: false,
+            editExer: false,
+            deleteExer: false
         }
 
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -38,6 +41,29 @@ export default class Exercises extends React.Component {
             alert(responce.err)
             window.location.href = '/login'
         }
+    }
+
+    deleteExercise = (index)=>{
+        var itemDelete = this.state.tasks[index]
+        fetch("http://localhost:5000/exercise/delete/"+this.state.username, {
+            method: "DELETE",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(itemDelete)
+        }).then(res => res.json())
+        .then((res)=>{
+            if(res.result == 'ok'){
+                alert('item deleted')
+                this.setState({tasks: this.state.tasks.filter((task)=>{
+                    return task !== this.state.tasks[index]
+                })})
+                
+            }else{
+                alert('goos wornd')
+            }
+        })
     }
 
     async componentDidMount() {
@@ -70,14 +96,19 @@ export default class Exercises extends React.Component {
 
     Tasks(item, index) {
         return (
-            <button key={index} className="exerciseContainer" onClick={() => { this.setState({ title: item.title, desc: item.description, date: item.date, addExer: false }) }}>
-                <div className="">
-                    <h3>{item.title}</h3>
+            <div key={index} className="row exerciseContainer" onClick={() => { this.setState({ title: item.title, desc: item.description, date: item.date, addExer: false }) }}>
+                <div className="col-lg-10 exerciseContainer-left">
+                    <div className="">
+                        <h3>{item.title}</h3>
+                    </div>
+                    <div className="">
+                        <h6>{item.description}</h6>
+                    </div>
                 </div>
-                <div className="">
-                    <h6>{item.description}</h6>
+                <div className="col-lg-2 exerciseContainer-right">
+                    <div onClick={()=>{this.deleteExercise(index)}} class="delbtn"><i class="fa fa-trash-o"></i></div>
                 </div>
-            </button>
+            </div>
         )
     }
 
@@ -88,8 +119,9 @@ export default class Exercises extends React.Component {
                     <div className="col-lg-8 right-container">
                         <p placeholder="Title" className="input title">{this.state.title}</p>
                         <p className="input desc">{this.state.desc}</p>
-                        <p className="input date">{this.state.date}</p>
-                        <button className="btn-edit" onClick={() => { this.setState({ addExer: !this.state.addExer }) }}>
+                        <p className="input date">{new Date(this.state.date).toDateString()}</p>
+                        <p className="input date">{new Date(this.state.date).toLocaleTimeString()}</p>
+                        <button className="btn-edit" onClick={() => { this.setState({ editExer: true, addExer: !this.state.addExer }) }}>
                             <i className="fa fa-edit"></i>
                         </button>
                     </div>
@@ -97,12 +129,7 @@ export default class Exercises extends React.Component {
             }
             else {
                 return (
-                    <div className="col-lg-8 brand-screen">
-                        <h1 className="welcome-heading">Welcome</h1>
-                        <h1 className="name-brand">KeepIt</h1>
-                        <br />
-                        <p className="paragraph">Never miss your note anymore!</p>
-                    </div>
+                    <WelcomeScreen />
                 )
             }
         }
