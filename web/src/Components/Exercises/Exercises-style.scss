@@ -1,0 +1,46 @@
+@import "../../Theme/colors.scss";
+
+.sec-box-exercise {
+    margin-top: 5vh;
+    //width: 60vw;
+    height: 80vh;
+    padding: 0px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.exerciseContainer {
+    width: 100%;
+    margin-bottom: 2px;
+    border-right: 0px;
+    border-left: 0px;
+    border-bottom: 1px solid gray;
+    background-color: white;
+    text-align: left;
+    display: flex;
+}
+
+.head-exercise {
+    background-color: $bg-dark;
+    text-align: center;
+    height: fit-content;
+    padding: 25px;
+}
+
+.head-exercise h4 {
+    color: white;
+}
+
+.list {
+    height: 650px;
+}
+
+.scroll {
+    padding: 10px 20px 10px 20px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: transparent;
+    height: inherit;
+    scrollbar-track-color: transparent;
+}

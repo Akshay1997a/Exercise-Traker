@@ -1,0 +1,112 @@
+@import "../../Theme/colors.scss";
+
+.right-container {
+    height: 650px;
+    padding-right: 10px;
+    text-align: left;
+}
+
+.input.title {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.input.date {
+    width: 50%;
+    display: inline;
+}
+
+.input.desc {
+    height: 450px;
+}
+
+.brand-screen {
+    text-align: center;
+    padding: 100px 0px;
+}
+
+.welcome-heading {
+    font-size: 50px;
+}
+
+.name-brand {
+    font-size: 150px;
+}
+
+.left-tasklist-but {
+    flex: 5;
+    cursor: pointer;
+}
+
+.right-tasklist-but {
+    flex: 1;
+}
+
+.delBut {
+    cursor: pointer;
+}
+
+.fa-plus,
+.fa-edit {
+    color: white;
+}
+
+.input-but {
+    background-color: $color-primary;
+    color: white;
+    font-size: 30px;
+    float: right;
+    padding: 10px 80px 10px 80px;
+}
+
+.btn-add {
+    z-index: 1;
+    position: absolute;
+    bottom: 5%;
+    left: 72%;
+    width: 70px;
+    height: 70px;
+    border: 0px;
+    background-color: $color-primary;
+    border-radius: 100%;
+    font-size: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.btn-edit {
+    z-index: 1;
+    float: right;
+    width: 70px;
+    height: 70px;
+    border: 0px;
+    background-color: $color-primary;
+    border-radius: 100%;
+    font-size: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.input {
+    margin-bottom: 0px;
+    width: 100%;
+    padding: 20px 20px;
+    font-size: 20px;
+    border: 0px;
+}
+
+textarea {
+    overflow: auto;
+    resize: none;
+    vertical-align: top;
+}
+
+.fa.fa-trash-o {
+    font-size: 30px;
+    color: $danger-color;
+    padding: 30%;
+}
+
+.delbtn {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}

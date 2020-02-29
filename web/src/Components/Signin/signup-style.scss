@@ -1,0 +1,38 @@
+@import "../../Theme/colors.scss";
+
+.sec-box-signin {
+    margin-top: 200px;
+    width: 450px;
+    height: 500px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    padding: 10px 50px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.head{
+    text-align: center;
+}
+
+input[type="text"],
+input[type="password"]{
+    width: 100%;
+    font-size: 0.9em;
+}
+
+.but{
+    float: right;
+    width: max-content;
+}
+
+.error{
+    color: $error-color;
+    font-size: 0.8em;
+}
+
+.footer{
+    text-align: center;
+    height: 10px;
+}

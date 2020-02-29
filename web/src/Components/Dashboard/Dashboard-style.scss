@@ -1,0 +1,17 @@
+@import "../../Theme/colors.scss";
+
+.nav-bg{
+    background-color: $bg-dark;
+}
+
+#brand{
+    color: white;
+    font-size: 2em;
+}
+
+.logout-btn{
+    background-color: transparent;
+    border: 0px;
+    font-size: 30px;
+    color: white;
+  }

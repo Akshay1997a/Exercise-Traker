@@ -1,0 +1,247 @@
+/* body{
+  font-size: 16px;
+  margin: 0px;
+  padding: 0px;
+}
+
+header{
+  align-items: center;
+}
+
+.head{
+  text-align: center;
+}
+
+.sec-box{
+  margin-top: 200px;
+  width: 50vw;
+  height: 80vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  padding: 10px 50px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sec-box input[type=text],
+.sec-box input[type=password],
+.sec-box input[type=date]{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.sec-box Button{
+  padding: 10px 15px;
+  border: 0px;
+  border-radius: 10px;
+  background-color: dodgerblue;
+  float: right;
+  color: white;
+  font-size: 20px;
+}
+
+#linkBut{
+  font-size: 13px;
+}
+
+.section{
+  margin-bottom: 50px;
+}
+
+.footer{
+  text-align: center;
+}
+
+.error{
+  color: red;
+  margin-top: 0px;
+}
+
+.container-fluid{
+  text-align: center;
+}
+
+.sec-box-exercise{
+  margin-top: 5vh;
+  width: 60vw;
+  height: 80vh;
+  padding: 0px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bg-dark{
+  background-color: #343A40;
+  border-radius: 0px;
+  padding: 10px 20px;
+}
+
+.navbar-brand{
+  font-size: 40px;
+  color: white;
+}
+
+.scroll{
+  width: 100%;
+}
+
+.exerciseContainer{
+  width: 100%;
+  margin-bottom: 2px;
+  border-right: 0px;
+  border-left: 0px;
+  border-bottom: 1px solid gray;
+  background-color: white;
+  text-align: left;
+  display: flex;
+}
+.exerciseContainer::selection{
+  outline: none;
+}
+
+.list{
+  height: 650px;
+}
+
+.scroll{
+  padding: 10px 20px 10px 20px;
+  overflow-y: scroll;
+  scrollbar-width: thin;
+  scrollbar-color: transparent;
+  height: inherit;
+  scrollbar-track-color: transparent;
+}
+
+.head-exercise{
+  background-color: #343A40;
+  text-align: center;
+  height: fit-content;
+  padding: 25px;
+}
+
+.head-exercise h4{
+  color: white;
+}
+
+.btn-add{
+  z-index: 1;
+  position: absolute;
+  bottom: 5%;
+  left: 72%;
+  width: 70px;
+  height: 70px;
+  border: 0px;
+  background-color: #06D755;
+  border-radius: 100%;
+  font-size: 30px;
+}
+
+.btn-edit{
+  float: right;
+}
+
+.desc{
+  height: 450px;
+}
+
+.fa.fa-edit{
+  font-size: 30px;
+}
+
+.fa-plus,
+.fa-edit{
+  color: white;
+}
+
+
+.textField{
+  font-size: 20px;
+  margin-bottom: 0px;
+  width: 100%;
+  padding: 20px 20px;
+  font-size: 20px;
+  border: 0px;
+}
+
+
+textarea{
+  overflow: auto;
+  resize: none;
+  vertical-align: top;
+}
+
+.date{
+  width: 50%;
+  display: inline;
+}
+
+.right-container{
+    height: 650px;
+    padding-right: 10px;
+    text-align: left;
+}
+
+.title{
+  font-size:35px;
+  font-weight: bold;
+}
+
+.brand-screen{
+  text-align: center;
+  padding: 100px 0px;
+}
+
+.welcome-heading{
+  font-size: 50px;
+}
+
+.name-brand{
+  font-size: 150px;
+}
+
+.logout-btn{
+  float: right;
+  background-color: transparent;
+  border: 0px;
+  font-size: 30px;
+  color: white;
+}
+.left-tasklist-but{
+  flex: 5;
+  cursor: pointer;
+}
+
+.right-tasklist-but{
+  flex: 1;
+}
+
+
+.rememberMeBut label{
+  font-weight: 400;
+  margin-left: 10px;
+}
+
+.fa.fa-trash-o{
+  color: #343A40;
+  font-size: 30px;
+  padding: 20px;
+}
+
+.fa.fa-trash-o:hover{
+  color: red;
+}
+
+.delBut{
+  cursor: pointer;
+}
+
+Checkbox{
+  width: 2px;
+  height: 2px;
+} */
